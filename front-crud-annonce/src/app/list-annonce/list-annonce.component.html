@@ -1,0 +1,62 @@
+<!-- The navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" style="color:white;">Annonces</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+        aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link">Add Annonce <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input type="search" id="searchName" class="form-control mr-sm-2" placeholder="Search annonce..." required>
+        </form>
+    </div>
+</nav>
+<br>
+<!-- liest des annonces -->
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container" id="main-container">
+    <section class="bg-light pt-5 pb-5 shadow-sm">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="text-uppercase border-bottom mb-4">Liste des annonces disponible</h3>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Lister les annonces annonce par annonce -->
+                <div *ngFor="let annonce of annonces | paginate: { itemsPerPage: 3, currentPage: p }; let i = index"
+                    class="col-lg-4 mb-3 d-flex align-items-stretch">
+                    <div class="card">
+                        <img src="https://i.postimg.cc/28PqLLQC/dotonburi-canal-osaka-japan-700.jpg"
+                            class="card-img-top" alt="Card Image">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{annonce?.titre}}</h5>
+                            <p class="card-text mb-4 float-right">{{ annonce?.prix | currency:'EUR':true }}</p>
+                            <p class="card-text mb-4">{{ annonce?.datePublication | date:'HH:mm:ss dd-MM-yyyy'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notification for no annonces -->
+
+
+    <div *ngIf="annonces?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+        <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">NO annonces!</h4>
+            <p>Aucunes Annonces disponible.</p>
+        </div>
+    </div>
+
+</div>
+<div class="d-flex justify-content-center">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
