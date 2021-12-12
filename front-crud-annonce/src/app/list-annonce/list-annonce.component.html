@@ -12,7 +12,8 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <input type="search" id="searchName" class="form-control mr-sm-2" placeholder="Search annonce..." required>
+            <input type="search" (ngModelChange)="searchAnnonce(key.value)" #key="ngModel" ngModel
+            name="key" id="searchAnnonce" class="form-control mr-sm-2" placeholder="Search annonce..." required>
         </form>
     </div>
 </nav>
@@ -30,7 +31,7 @@
             </div>
             <div class="row">
                 <!-- Lister les annonces annonce par annonce -->
-                <div *ngFor="let annonce of annonces | paginate: { itemsPerPage: 3, currentPage: p }; let i = index"
+                <div *ngFor="let annonce of annonces | paginate: { itemsPerPage: 5, currentPage: p }; let i = index"
                     class="col-lg-4 mb-3 d-flex align-items-stretch">
                     <div class="card">
                         <img src="https://i.postimg.cc/28PqLLQC/dotonburi-canal-osaka-japan-700.jpg"

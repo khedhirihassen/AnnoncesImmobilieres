@@ -18,7 +18,7 @@ export class ListAnnonceComponent implements OnInit {
   ngOnInit(): void {
     this.getAnnonces();
   }
-
+  // methode pour retourner tous les annonces existant
   public getAnnonces(): void {
     this.annonceService.getAnnonces().subscribe(
       (response: Annonce[]) => {
@@ -28,6 +28,20 @@ export class ListAnnonceComponent implements OnInit {
         alert(error.message);
       }
     );
+  }
+
+  // methode pour chercher un annonce par titre
+  public searchAnnonce(key: string): void {
+    const results: Annonce[] = [];
+    for (const annonce of this.annonces) {
+      if (annonce.titre.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
+        results.push(annonce);
+      }
+    }
+    this.annonces = results;
+    if (results.length === 0 || !key) {
+      this.getAnnonces();
+    }
   }
 
 }
