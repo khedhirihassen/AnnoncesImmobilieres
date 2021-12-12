@@ -8,11 +8,13 @@ import { ListAnnonceComponent } from './list-annonce/list-annonce.component';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ViewAnnonceComponent } from './view-annonce/view-annonce.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListAnnonceComponent
+    ListAnnonceComponent,
+    ViewAnnonceComponent
   ],
   imports: [
     BrowserModule,

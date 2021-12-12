@@ -13,9 +13,14 @@ export class AnnonceService {
 
   constructor(private http: HttpClient) { }
 
+  // get all annonce
   public getAnnonces(): Observable<Annonce[]>{
     return this.http.get<Annonce[]>(`${this.apiServerUrl}/annonces`);
   }
+  // get annonce by Id
+  find(id:number): Observable<any> {
+    return this.http.get<Annonce>(`${this.apiServerUrl}/annonces/find/` + id)
+}
 
 
 
