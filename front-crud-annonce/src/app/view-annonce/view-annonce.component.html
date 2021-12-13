@@ -7,7 +7,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto">
-          
+            <li class="nav-item active">
+                <a href="#" [routerLink]="['/add']" class="nav-link">Add Annonce <span class="sr-only">(current)</span></a>
+            </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input type="search" id="searchAnnonce" class="form-control mr-sm-2" placeholder="Search annonce..."
@@ -32,8 +34,8 @@
             <div class="row">
                 <div class="col">
                     <figure class="figure">
-                        <img src="https://mdbootstrap.com/img/new/standard/city/041.jpg"
-                            class="figure-img img-fluid rounded shadow-3 mb-3" alt="Hollywood Sign on The Hill" />
+                        <img src="{{this.annonceService.apiServerUrl+'/annonces/ImageAnnonce/'+annonce.id}}"
+                            class="figure-img img-fluid rounded shadow-3 mb-3" style="width: 500px; height: 300px;" alt="No picture Found" />
                     </figure>
                 </div>
                 <div class="col">

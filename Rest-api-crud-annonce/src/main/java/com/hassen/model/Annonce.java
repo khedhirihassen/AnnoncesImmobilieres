@@ -2,10 +2,15 @@ package com.hassen.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,10 +30,11 @@ public class Annonce {
 	
 	private String description;
 	
-	private String image;
-	
+	@CreationTimestamp
 	private Date datePublication;
 	
 	private double prix ;
+	
+	private String image;
 
 }

@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AnnonceService } from '../services/annonce.service';
 import { Annonce } from '../models/annonce';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpClient, HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-annonce',
@@ -12,22 +12,49 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class AddAnnonceComponent implements OnInit {
   constructor(public annonceService: AnnonceService, private router: Router, private route: ActivatedRoute) {
-   }
+  }
+  userFile: any;
+  public imagePath: any;
+  imgURL: any;
+  public message: string;
 
   ngOnInit(): void {
   }
- 
-  public onAddAnnonce(addForm: NgForm): void {
-    this.annonceService.addAnnonce(addForm.value).subscribe(
-      (response: Annonce)=>{
-        addForm.reset();
-        this.router.navigateByUrl('');
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-        addForm.reset();
+
+  addData(addForm: NgForm) {
+    const formData: FormData = new FormData();
+    formData.append("titre", addForm.value.titre);
+    formData.append("description", addForm.value.description);
+    formData.append("prix", addForm.value.prix);
+    formData.append('file', this.userFile);
+    this.annonceService.addAnnonce(formData).subscribe(data => {
+
+      this.router.navigate(['']);
+    });
+  }
+
+  onSelectFile(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.userFile = file;
+      // this.f['profile'].setValue(file);
+
+      var mimeType = event.target.files[0].type;
+      if (mimeType.match(/image\/*/) == null) {
+        this.message = "Only images are supported.";
+        return;
       }
-    );
+
+      var reader = new FileReader();
+
+      this.imagePath = file;
+      reader.readAsDataURL(file);
+      reader.onload = (_event) => {
+        this.imgURL = reader.result;
+      }
+    }
+
+
   }
 
 }

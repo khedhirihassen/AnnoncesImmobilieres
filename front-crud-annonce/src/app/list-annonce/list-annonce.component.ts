@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse , HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { Annonce } from '../models/annonce';
 import { AnnonceService } from '../services/annonce.service';
@@ -12,8 +12,9 @@ import { AnnonceService } from '../services/annonce.service';
 export class ListAnnonceComponent implements OnInit {
   p = 1;
   public annonces: Annonce[];
-
-  constructor(private annonceService: AnnonceService) { }
+  message: string;
+  
+  constructor(public annonceService: AnnonceService,private httpClient: HttpClient) { }
 
   ngOnInit(): void {
     this.getAnnonces();
