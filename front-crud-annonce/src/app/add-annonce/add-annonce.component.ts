@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AnnonceService } from '../services/annonce.service';
@@ -6,6 +6,7 @@ import { Annonce } from '../models/annonce';
 import { HttpErrorResponse, HttpClient, HttpEventType } from '@angular/common/http';
 
 @Component({
+  encapsulation: ViewEncapsulation.Emulated,
   selector: 'app-add-annonce',
   templateUrl: './add-annonce.component.html',
   styleUrls: ['./add-annonce.component.css']

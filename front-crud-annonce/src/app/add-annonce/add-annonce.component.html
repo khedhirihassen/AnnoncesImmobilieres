@@ -1,3 +1,7 @@
+<head >
+    
+    
+</head>
 <!-- The navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a href="#" [routerLink]="['']" class="navbar-brand" style="color:white;">Annonces</a>
@@ -17,7 +21,7 @@
 </nav>
 <br>
 <!-- form add annonce -->
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container" id="main-container">
     <div class="col-md-10 col-md-offset-4">
@@ -30,7 +34,7 @@
                 <label for="titre" class="col-sm-2 col-form-label">Titre :</label>
                 <div class="col-sm-6">
                     <input type="text" ngModel name="titre" class="form-control" id="titre" placeholder="titre"
-                        required>
+                        required  minlength="4">
                 </div>
             </div>
 
